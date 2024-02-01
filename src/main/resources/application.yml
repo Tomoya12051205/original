@@ -1,12 +1,5 @@
-# board
 spring:
-  jpa:
-    database: POSTGRESQL
-  sql:
-    init:
-      platform: postgres
-  datasource:
-    driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/board
-    username: board
-    password: password
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
