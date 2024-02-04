@@ -11,4 +11,3 @@ public class PagesController {
         return "pages/index";
     }
 }
-
