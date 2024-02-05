@@ -24,6 +24,7 @@ public class UsersController {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private UserRepository repository;
+	
 
 	@GetMapping("/users/new")
 	public String newUser(Model model) {
