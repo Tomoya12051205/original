@@ -49,6 +49,10 @@ public class Topic extends AbstractEntity implements Serializable {
     @OneToMany
     @JoinColumn(name = "topicId", insertable = false, updatable = false)
     private List<Favorite> favorites;
+    
+    @OneToMany
+    @JoinColumn(name = "topicId", insertable = false, updatable = false)
+    private List<Comment> comments;
 }
 	
 	
