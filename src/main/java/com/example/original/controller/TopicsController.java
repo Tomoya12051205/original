@@ -52,7 +52,7 @@ public class TopicsController {
     @Autowired
     private MessageSource messageSource;
 
-    @Value("${image.local:false}")
+    @Value("${image.local:true}")
     private String imageLocal;
 
     @GetMapping("/topics")
