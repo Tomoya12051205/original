@@ -1,5 +1,8 @@
 package com.example.original;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,11 +26,13 @@ import com.example.original.repository.UserRepository;
 @EnableWebSecurity
 public class SecurityConfig {
 
+	
     @Autowired
     private UserRepository repository;
     @Autowired
     private FormAuthenticationProvider authenticationProvider;
 
+    protected static Logger log = LoggerFactory.getLogger(SecurityConfig.class);
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, HandlerMappingIntrospector introspector)
             throws Exception {
@@ -44,7 +49,9 @@ public class SecurityConfig {
                 new AntPathRequestMatcher("/user"),
                 new AntPathRequestMatcher("/css/**"),
                 new AntPathRequestMatcher("/images/**"),
-                new AntPathRequestMatcher("/scripts/**"));
+                new AntPathRequestMatcher("/scripts/**"),
+                new AntPathRequestMatcher("/push7-worker.js"),
+                new AntPathRequestMatcher("/manifest.json"));
 
         // @formatter:off
         http.authorizeHttpRequests(authz -> authz
@@ -57,6 +64,7 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/topics") // ログイン成功時の遷移先
                         .failureUrl("/login-failure") // ログイン失敗時の遷移先
                         .permitAll()) // 未ログインでもアクセス可能
+               
                 .logout(logout -> logout
                         .logoutSuccessUrl("/logout-complete") // ログアウト成功時の遷移先
                         .invalidateHttpSession(true)
@@ -87,4 +95,6 @@ public class SecurityConfig {
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+    
+       
 }

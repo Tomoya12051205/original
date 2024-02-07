@@ -59,5 +59,6 @@ public class UsersController {
 		model.addAttribute("message", "ユーザー登録が完了しました。");
 		
 		return "layouts/complete";
+		
 	}
 }
