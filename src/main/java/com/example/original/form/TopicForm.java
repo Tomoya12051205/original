@@ -29,7 +29,12 @@ public class TopicForm {
     @NotEmpty
     @Size(max = 1000)
     private String description;
+    
+    private Double latitude;
+    
 
+    private Double longitude;
+    
     private UserForm user;
     
     private List<FavoriteForm> favorites;
