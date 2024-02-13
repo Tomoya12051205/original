@@ -48,13 +48,15 @@
 						</li>
 					</th:block>
 					<th:block sec:authorize="!isAuthenticated()">
-						<li class="nav-item">
-							<a class="nav-link" th:href="@{/users/new}">
+						<li class="nav-item" id="new">
+							<p id="newToolTip" style="display: none">新規登録</p>
+							<a class="nav-link" id="newlink "th:href="@{/users/new}">
 								<img src="/images/icons/register.png" th:src="@{/images/icons/register.png}">
 							</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" th:href="@{/login}">
+						<li class="nav-item" id="login">
+							<p id="loginToolTip" style="display: none">ログイン</p>
+							<a class="nav-link"　id="loginlink" th:href="@{/login}">
 								<img src="/images/icons/login.png" th:src="@{/images/icons/login.png}">
 							</a>
 						</li>
