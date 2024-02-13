@@ -15,27 +15,33 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ms-auto">
 					<th:block sec:authorize="isAuthenticated()">
-						<li class="nav-item">
-							<a class="nav-link" th:href="@{/topics/topic.csv}">
+						<li class="nav-item" id="csvdownload">
+							<p id="csvToolTip" style="display: none;">CSVダウンロード</p>
+							<a class="nav-link" id="csvlink" th:href="@{/topics/topic.csv}" >
 								<img src="/images/icons/csv.png" th:src="@{/images/icons/csv.png}">
 							</a>
-						<li class="nav-item">
-							<a class="nav-link" th:href="@{/calendars}">
+						</li>
+						<li class="nav-item" id="calendars">
+							<p id="calendarsToolTip" style="display: none;">カレンダー（投稿履歴）</p>
+							<a class="nav-link"  id="calendarslink" th:href="@{/calendars}">
 								<img src="/images/icons/calendar.png" th:src="@{/images/icons/calendar.png}">
 							</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" th:href="@{/favorites}">
+						<li class="nav-item" id="favorites">
+							<p id="favoritesToolTip" style="display: none;">いいね一覧</p>
+							<a class="nav-link" id="favoriteslink" th:href="@{/favorites}">
 								<img src="/images/icons/heart.png" th:src="@{/images/icons/heart.png}">
 							</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" th:href="@{/topics/new}">
+						<li class="nav-item" id="topics">
+							<p id="topicsToolTip" style="display: none;">新規投稿</p>
+							<a class="nav-link" id="topicslink" th:href="@{/topics/new}">
 								<img src="/images/icons/camera.png" th:src="@{/images/icons/camera.png}">
 							</a>
 						</li>
-						<li class="nav-item">
-							<a th:href="@{/logout}" class="nav-link convert" data-method="post"
+						<li class="nav-item" id="logout">
+							<p id="logoutToolTip" style="display: none">ログアウト</p>
+							<a th:href="@{/logout}" id="logoutlink" class="nav-link convert" data-method="post"
 								th:data-_csrf="${_csrf.token}">
 								<img src="/images/icons/logout.png" th:src="@{/images/icons/logout.png}">
 							</a>
@@ -57,6 +63,7 @@
 			</div>
 		</div>
 	</nav>
+	
 	<div id="messages" layout:fragment="messages" th:if="!${#lists.isEmpty(#fields.detailedErrors())}">
 		<ul>
 			<li th:each="error : ${#fields.detailedErrors()}" class="error-message" th:text="${error.message}" />
