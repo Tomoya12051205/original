@@ -97,10 +97,10 @@
 			var index = 1;
 
 			function changeBackground() {
-				var imageUrl = '/slides/' + images[index];
+				var imageUrl = '/images/' + images[index];
 
-				$('.pages-index-wrapper').fadeOut(1000, function () {
-					$(this).css('background-image', 'url(' + imageUrl + ')').fadeIn(1000);
+				$('.pages-index-wrapper').fadeOut(700, function () {
+					$(this).css('background-image', 'url(' + imageUrl + ')').fadeIn(900);
 				});
 
 				index = (index + 1) % images.length;
@@ -110,7 +110,7 @@
 			//changeBackground();
 
 			// 10秒ごとに背景画像を切り替える
-			setInterval(changeBackground, 10000);
+			setInterval(changeBackground, 8000);
 		});
 	</script>
 	
