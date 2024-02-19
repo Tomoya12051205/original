@@ -25,64 +25,95 @@
 		crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="/scripts/method-convert.js" th:src="@{/scripts/method-convert.js}"></script>
-    <script>
+	<script>
 		$(function () {
 			convertMethod('.convert');
 			$(".alert").fadeOut(5000);
 		});
-		
-		
-		$(function () {	
+		$(function () {
+			// 画像切り替え時にプレビュー表示
+			$('#form').on('change', function (e) {
+				var reader = new FileReader();
+				reader.onload = function (e) {
+					$("#img").attr('src', e.target.result);
+				}
+				reader.readAsDataURL(e.target.files[0]);
+			});
+		});
+
+		$(function () {
 			$("#csvdownload").mouseover(function () {
 				$("#csvToolTip").show();
-	  		});
-	  		$("#csvdownload").mouseout(function () {
+			});
+			$("#csvdownload").mouseout(function () {
 				$("#csvToolTip").hide();
-	  		});
-	  			
+			});
+
 			$("#calendars").mouseover(function () {
 				$("#calendarsToolTip").show();
-	  		});
-	  		$("#calendars").mouseout(function () {
+			});
+			$("#calendars").mouseout(function () {
 				$("#calendarsToolTip").hide();
-	  		});
-	  		
-	  		$("#favorites").mouseover(function () {
+			});
+
+			$("#favorites").mouseover(function () {
 				$("#favoritesToolTip").show();
-	  		});
-	  		$("#favorites").mouseout(function () {
+			});
+			$("#favorites").mouseout(function () {
 				$("#favoritesToolTip").hide();
-	  		});
-	  		
-	  		$("#topics").mouseover(function () {
+			});
+
+			$("#topics").mouseover(function () {
 				$("#topicsToolTip").show();
-	  		});
-	  		$("#topics").mouseout(function () {
+			});
+			$("#topics").mouseout(function () {
 				$("#topicsToolTip").hide();
-	  		});
-	  		
-	  		$("#logout").mouseover(function () {
+			});
+
+			$("#logout").mouseover(function () {
 				$("#logoutToolTip").show();
-	  		});
-	  		$("#logout").mouseout(function () {
+			});
+			$("#logout").mouseout(function () {
 				$("#logoutToolTip").hide();
-	  		});
-	  		
-	  		$("#new").mouseover(function () {
+			});
+
+			$("#new").mouseover(function () {
 				$("#newToolTip").show();
-	  		});
-	  		$("#new").mouseout(function () {
+			});
+			$("#new").mouseout(function () {
 				$("#newToolTip").hide();
-	  		});
-	  		
-	  		$("#login").mouseover(function () {
+			});
+
+			$("#login").mouseover(function () {
 				$("#loginToolTip").show();
-	  		});
-	  		$("#login").mouseout(function () {
+			});
+			$("#login").mouseout(function () {
 				$("#loginToolTip").hide();
-	  		});
+			});
+		});
+	
+		$(document).ready(function () {
+			var images = ['top1.png', 'top2.jpg', 'top3.jpg', 'top4.jpg'];
+			var index = 1;
+
+			function changeBackground() {
+				var imageUrl = '/slides/' + images[index];
+
+				$('.pages-index-wrapper').fadeOut(1000, function () {
+					$(this).css('background-image', 'url(' + imageUrl + ')').fadeIn(1000);
+				});
+
+				index = (index + 1) % images.length;
+			}
+
+			// 初回の呼び出し
+			//changeBackground();
+
+			// 10秒ごとに背景画像を切り替える
+			setInterval(changeBackground, 10000);
 		});
 	</script>
+	
 </body>
 
 </html>
